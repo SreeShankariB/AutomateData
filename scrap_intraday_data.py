@@ -240,36 +240,34 @@ for hour in hours:
             df_15.loc[hour * 4 + thirty_minutes * 2  + fifteen_minutes, 'Sell Volume (MWh)'] = values_15[8].get_text()
             df_15.loc[hour * 4 + thirty_minutes * 2  + fifteen_minutes, 'Volume (MWh)'] = values_15[9].get_text()
             
-# Ensure the 1hr directory exists
-output_dir_1h = 'intraday_continuous_data_1h'
-if not os.path.exists(output_dir_1h):
-    print(f"Directory '{output_dir_1h}' does not exist. Creating it...")
-    os.makedirs(output_dir_1h)
+import os
 
-# Save the CSV file
-output_file_1h = os.path.join(output_dir_1h, 'intraday_continuous_data_1h_' + str(delivery_date) + '.csv')
-print(f"Saving file to: {output_file_1h}")
-df_60.to_csv(output_file_1h, sep=';')
+# Function to ensure a directory exists or create it
+def ensure_directory_exists(dir_path):
+    if not os.path.exists(dir_path):
+        print(f"Directory '{dir_path}' does not exist. Creating it...")
+        os.makedirs(dir_path)
 
-# Ensure the 30-minute directory exists
-output_dir_30min = 'intraday_continuous_data_30min'
-if not os.path.exists(output_dir_30min):
-    print(f"Directory '{output_dir_30min}' does not exist. Creating it...")
-    os.makedirs(output_dir_30min)
+# Ensure the 'intraday_auction_data' directory exists
+ensure_directory_exists('intraday_auction_data')
+
+# Save the auction data
+df_30.to_csv('intraday_auction_data/intraday_auction_data_' + str(delivery_date) + '.csv', sep=';')
+
+# Ensure the 'intraday_continuous_data_1h' directory exists
+ensure_directory_exists('intraday_continuous_data_1h')
+
+# Save the 1-hour data
+df_60.to_csv('intraday_continuous_data_1h/intraday_continuous_data_1h_' + str(delivery_date) + '.csv', sep=';')
+
+# Ensure the 'intraday_continuous_data_30min' directory exists
+ensure_directory_exists('intraday_continuous_data_30min')
 
 # Save the 30-minute data
-output_file_30min = os.path.join(output_dir_30min, 'intraday_continuous_data_30min_' + str(delivery_date) + '.csv')
-print(f"Saving file to: {output_file_30min}")
-df_30.to_csv(output_file_30min, sep=';')
+df_30.to_csv('intraday_continuous_data_30min/intraday_continuous_data_30min_' + str(delivery_date) + '.csv', sep=';')
 
-
-# Ensure the 15-minute directory exists
-output_dir_15min = 'intraday_continuous_data_15min'
-if not os.path.exists(output_dir_15min):
-    print(f"Directory '{output_dir_15min}' does not exist. Creating it...")
-    os.makedirs(output_dir_15min)
+# Ensure the 'intraday_continuous_data_15min' directory exists
+ensure_directory_exists('intraday_continuous_data_15min')
 
 # Save the 15-minute data
-output_file_15min = os.path.join(output_dir_15min, 'intraday_continuous_data_15min_' + str(delivery_date) + '.csv')
-print(f"Saving file to: {output_file_15min}")
-df_15.to_csv(output_file_15min, sep=';')
+df_15.to_csv('intraday_continuous_data_15min/intraday_continuous_data_15min_' + str(delivery_date) + '.csv', sep=';')
