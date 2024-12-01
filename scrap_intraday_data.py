@@ -77,6 +77,14 @@ for step in timesteps :
     df.loc[step, 'Volume (MWh)'] = values[2].get_text()
     df.loc[step, 'Price (€/MWh)'] = values[3].get_text()
 
+import os
+
+# Ensure the directory exists
+output_dir = 'intraday_auction_data'
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
+
+
 df.to_csv('intraday_auction_data/intraday_auction_data_' + str(delivery_date) + '.csv', sep = ';')
 
 
