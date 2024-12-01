@@ -78,14 +78,13 @@ for step in timesteps :
     df.loc[step, 'Price (€/MWh)'] = values[3].get_text()
 
 import os
-
-# Ensure the output directory exists
+# Check for the output directory existence
 output_dir = 'intraday_auction_data'
 if not os.path.exists(output_dir):
     print(f"Directory '{output_dir}' does not exist. Creating it...")
     os.makedirs(output_dir)
 
-# Save the CSV file
+# Saving CSV file
 output_file = os.path.join(output_dir, 'intraday_auction_data_' + str(delivery_date) + '.csv')
 print(f"Saving file to: {output_file}")
 df.to_csv(output_file, sep=';')
@@ -242,32 +241,32 @@ for hour in hours:
             
 import os
 
-# Function to ensure a directory exists or create it
+# Function to ensure a directory exists or creation
 def ensure_directory_exists(dir_path):
     if not os.path.exists(dir_path):
         print(f"Directory '{dir_path}' does not exist. Creating it...")
         os.makedirs(dir_path)
 
-# Ensure the 'intraday_auction_data' directory exists
+# Check 'intraday_auction_data' directory exists
 ensure_directory_exists('intraday_auction_data')
 
-# Save the auction data
+# Saving auction data
 df_30.to_csv('intraday_auction_data/intraday_auction_data_' + str(delivery_date) + '.csv', sep=';')
 
-# Ensure the 'intraday_continuous_data_1h' directory exists
+# Check 'intraday_continuous_data_1h' directory exists
 ensure_directory_exists('intraday_continuous_data_1h')
 
-# Save the 1-hour data
+# Saving 1-hour data
 df_60.to_csv('intraday_continuous_data_1h/intraday_continuous_data_1h_' + str(delivery_date) + '.csv', sep=';')
 
-# Ensure the 'intraday_continuous_data_30min' directory exists
+# Check 'intraday_continuous_data_30min' directory exists
 ensure_directory_exists('intraday_continuous_data_30min')
 
-# Save the 30-minute data
+# Saving 30-minute data
 df_30.to_csv('intraday_continuous_data_30min/intraday_continuous_data_30min_' + str(delivery_date) + '.csv', sep=';')
 
-# Ensure the 'intraday_continuous_data_15min' directory exists
+# Check 'intraday_continuous_data_15min' directory exists
 ensure_directory_exists('intraday_continuous_data_15min')
 
-# Save the 15-minute data
+# Saving 15-minute data
 df_15.to_csv('intraday_continuous_data_15min/intraday_continuous_data_15min_' + str(delivery_date) + '.csv', sep=';')
