@@ -24,4 +24,4 @@ jobs:
         pip install beautifulsoup4 pandas requests
 
     - name: Run script
-      run: python AutomateData/scrap_intraday_data.py
+      run: python scrap_intraday_data.py
