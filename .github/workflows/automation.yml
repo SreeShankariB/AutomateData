@@ -25,3 +25,14 @@ jobs:
 
     - name: Run script
       run: python scrap_intraday_data.py
+       
+    - name: Upload CSVs as Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: csv-files
+        path: |
+          intraday_auction_data/*
+          intraday_continuous_data_1h/*
+          intraday_continuous_data_30min/*
+          intraday_continuous_data_15min/*
+
