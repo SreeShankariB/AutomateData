@@ -79,13 +79,16 @@ for step in timesteps :
 
 import os
 
-# Ensure the directory exists
+# Ensure the output directory exists
 output_dir = 'intraday_auction_data'
 if not os.path.exists(output_dir):
+    print(f"Directory '{output_dir}' does not exist. Creating it...")
     os.makedirs(output_dir)
 
-
-df.to_csv(os.path.join(output_dir, 'intraday_auction_data_' + str(delivery_date) + '.csv'), sep=';')
+# Save the CSV file
+output_file = os.path.join(output_dir, 'intraday_auction_data_' + str(delivery_date) + '.csv')
+print(f"Saving file to: {output_file}")
+df.to_csv(output_file, sep=';')
 
 
 # Intraday continuous data
