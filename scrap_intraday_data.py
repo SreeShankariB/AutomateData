@@ -239,7 +239,37 @@ for hour in hours:
             df_15.loc[hour * 4 + thirty_minutes * 2  + fifteen_minutes, 'Buy Volume (MWh)'] = values_15[7].get_text()
             df_15.loc[hour * 4 + thirty_minutes * 2  + fifteen_minutes, 'Sell Volume (MWh)'] = values_15[8].get_text()
             df_15.loc[hour * 4 + thirty_minutes * 2  + fifteen_minutes, 'Volume (MWh)'] = values_15[9].get_text()
+            
+# Ensure the 1hr directory exists
+output_dir_1h = 'intraday_continuous_data_1h'
+if not os.path.exists(output_dir_1h):
+    print(f"Directory '{output_dir_1h}' does not exist. Creating it...")
+    os.makedirs(output_dir_1h)
 
-df_60.to_csv('intraday_continuous_data_1h/intraday_continuous_data_1h_' + str(delivery_date) + '.csv', sep = ';')
-df_30.to_csv('intraday_continuous_data_30min/intraday_continuous_data_30min_' + str(delivery_date) + '.csv', sep = ';')
-df_15.to_csv('intraday_continuous_data_15min/intraday_continuous_data_15min_' + str(delivery_date) + '.csv', sep = ';')
+# Save the CSV file
+output_file_1h = os.path.join(output_dir_1h, 'intraday_continuous_data_1h_' + str(delivery_date) + '.csv')
+print(f"Saving file to: {output_file_1h}")
+df_60.to_csv(output_file_1h, sep=';')
+
+# Ensure the 30-minute directory exists
+output_dir_30min = 'intraday_continuous_data_30min'
+if not os.path.exists(output_dir_30min):
+    print(f"Directory '{output_dir_30min}' does not exist. Creating it...")
+    os.makedirs(output_dir_30min)
+
+# Save the 30-minute data
+output_file_30min = os.path.join(output_dir_30min, 'intraday_continuous_data_30min_' + str(delivery_date) + '.csv')
+print(f"Saving file to: {output_file_30min}")
+df_30.to_csv(output_file_30min, sep=';')
+
+
+# Ensure the 15-minute directory exists
+output_dir_15min = 'intraday_continuous_data_15min'
+if not os.path.exists(output_dir_15min):
+    print(f"Directory '{output_dir_15min}' does not exist. Creating it...")
+    os.makedirs(output_dir_15min)
+
+# Save the 15-minute data
+output_file_15min = os.path.join(output_dir_15min, 'intraday_continuous_data_15min_' + str(delivery_date) + '.csv')
+print(f"Saving file to: {output_file_15min}")
+df_15.to_csv(output_file_15min, sep=';')
