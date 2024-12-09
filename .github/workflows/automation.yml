@@ -3,7 +3,6 @@ name: Automate Data Fetch
 on:
   schedule:
     - cron: '0 5 * * *'  # Runs daily at 06:00 CET
-    - cron: '30 10 * * *' # Runs daily at 11:30 AM
   workflow_dispatch: # Allows manual triggering of the workflow
 
 jobs:
