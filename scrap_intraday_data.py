@@ -34,9 +34,13 @@ table = soup.find(class_="js-table-values")
 
 if table:
     print("Table found")
+    rows = table.find_all(class_="child")
     
 else:
     print("Table not found or empty")
+     with open("debug_page_content.html", "w", encoding="utf-8") as f:
+        f.write(page.prettify())
+    raise ValueError("Unable to locate the table on the webpage.")
 
 
 rows = table.find_all(class_="child")
