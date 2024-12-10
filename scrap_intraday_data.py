@@ -31,19 +31,26 @@ else:
 
 soup = BeautifulSoup(page.content, "html.parser")
 table = soup.find(class_="js-table-values")
+print(table.prettify())
 
-if table:
-    print("Table found")
-    rows = table.find_all(class_="child")
-    
-else:
-    print("Table not found or empty")
-    with open("debug_page_content.html", "w", encoding="utf-8") as f:
-        f.write(soup.prettify()) 
-    raise ValueError("Unable to locate the table on the webpage.")
-
+if not table:
+    print("Intraday continuous data table not found.")
 
 rows = table.find_all(class_="child")
+for row in rows:
+    print(row)
+    
+row = table.find(class_="child")
+print(row)
+
+values = row.find_all("td")
+print(values)
+for value in values:
+    print(value.get_text())
+    
+
+
+
 
 # print(page.text)
 
