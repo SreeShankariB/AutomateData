@@ -39,7 +39,7 @@ if table:
 else:
     print("Table not found or empty")
     with open("debug_page_content.html", "w", encoding="utf-8") as f:
-        f.write(page.prettify())
+        f.write(soup.prettify()) 
     raise ValueError("Unable to locate the table on the webpage.")
 
 
